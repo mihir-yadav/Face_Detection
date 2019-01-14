@@ -8,7 +8,8 @@ import cv2
 # from a lot of positive(faces) and negative(non-faces) 
 # images. 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml') 
- 
+#This function loads the classifier object from the CascadeClassfier class taking the file as paramenter
+
 # Trained XML file for detecting eyes 
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml') 
 
@@ -21,11 +22,13 @@ while 1:
 	# reads frames from a camera 
 	ret, img = cap.read() 
 
-	# convert to gray scale of each frames 
+	# convert to gray scale of each frames as cascade only looks at grayscale
 	gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
 
-	# Detects faces of different sizes in the input image 
+	# Detects faces of different sizes in the input image and storing them in the list 'faces'
 	faces = face_cascade.detectMultiScale(gray, 1.3, 5) 
+	#setting the scale factor to 1.3 
+	#setting minNeighbours to 5 
 
 	for (x,y,w,h) in faces: 
 		# To draw a rectangle in a face 
